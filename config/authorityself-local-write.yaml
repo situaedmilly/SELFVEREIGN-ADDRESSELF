@@ -1,0 +1,14 @@
+authority:
+  authority_ref: AUTH-LOCAL-SELFREALITY-WRITE-001
+  version: "0.1"
+  status: GRANTED
+  identity_ref: IDENTITY-OURSELFPIMAC-QWEN-CODE
+  target_ref: SELFREALITY#FIRST-ALCHEMY-LAUNCH
+  capability_ref: CAPABILITYSELF/WRITE_EFFECT_RECEIPT
+  action_ref: ACTUATIONSELF/WRITE_EFFECT_RECEIPT
+  scope:
+    transport: LOCAL
+    effect_surface: runtime/effects/last-effect.json
+    receipt_surface: runtime/receipts/last-receipt.json
+  external_effect: false
+  expires: "SESSION_ONLY"
