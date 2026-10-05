@@ -22,6 +22,17 @@ for (const token of required) {
   if (!config.includes(token)) throw new Error("CAPABILITY_CONFIG_INVALID:" + token);
 }
 
+const authorityPresent = /authority_ref:\s*null/.test(config) === false;
+if (!authorityPresent) {
+  console.log("CAPABILITYSELF=NOT_AUTHORIZED");
+  console.log("CAPABILITY_GRANTED=NO");
+  console.log("ACTUATIONSELF=NOT_PERFORMED");
+  console.log("EFFECTSELF=NOT_CLAIMED");
+  console.log("RECEIPTSELF=NOT_BOUND");
+  console.log("AUTHORITY=NONE");
+  process.exit(0);
+}
+
 const target = "SELFREALITY#FIRST-ALCHEMY-LAUNCH";
 const capability = "CAPABILITYSELF/WRITE_EFFECT_RECEIPT";
 const action = "ACTUATIONSELF/WRITE_EFFECT_RECEIPT";
