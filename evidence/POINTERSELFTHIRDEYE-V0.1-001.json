@@ -1,0 +1,50 @@
+{
+  "receipt_id": "POINTERSELFTHIRDEYE-V0.1-001",
+  "protocol": "SELFVEREIGN-ADDRESSELF/POINTER/0.1",
+  "branch": "feat/pointer-self-thirdeye-v0.1",
+  "source_head": "34f94869a23161afa886824166778c2a94d78ce1",
+  "instance_address": "ia://ourself.ecosystem/repo/situaedmilly/SELFVEREIGN-ADDRESSELF@34f94869a23161afa886824166778c2a94d78ce1#src/pointer-self-thirdeye.mjs",
+  "pointer_instance_address": "ia://ourself.ecosystem/node/OURSELFPIMAC#QWEN-CODE",
+  "canonical_source": "node.surfaces[].sna",
+  "execution": {
+    "runtime": "Node.js",
+    "command": "node tests/pointer-self-thirdeye.test.mjs",
+    "exit_code": 0,
+    "result": "PASS",
+    "query": "WHERE_IS",
+    "target": {
+      "node_id": "OURSELFPIMAC",
+      "surface_id": "QWEN-CODE"
+    },
+    "resolution": {
+      "transport": "LOCAL",
+      "endpoint": "workspace://~/Projects/ourself-core",
+      "protocol": "QWEN_CODE_SHELL",
+      "status": "OBSERVED",
+      "witness_ref": "THIRDEYE-QWEN-WINDOW"
+    },
+    "negative_cases": {
+      "unknown_surface": "NOT_FOUND",
+      "non_location_query": "REJECTED"
+    },
+    "boundary_assertions": {
+      "authority_ref_in_resolution": false,
+      "actuation_in_resolution": false,
+      "effect_in_resolution": false
+    }
+  },
+  "provenance": {
+    "resolver_blob_sha": "56b48cbdb373e1d2d28f66dfe3d3c7cde50b9b7e",
+    "test_blob_sha": "2cc120222356577b0fa8ffec13d229173167846b",
+    "node_record_blob_sha": "16dc4f694d9ab7ba2e2415ba4993a97cc6e3029d"
+  },
+  "mutation_boundary": {
+    "repository_mutation": true,
+    "address_resolution": true,
+    "authorization": false,
+    "transport_execution": false,
+    "actuation": false,
+    "effect": false
+  },
+  "status": "POINTER_TO_ADDRESS_TO_LOCATION_VERIFIED_IN_EXECUTION_ENVIRONMENT"
+}
