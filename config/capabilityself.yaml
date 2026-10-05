@@ -3,8 +3,18 @@ capability:
   version: "0.1"
   operation: "WRITE_EFFECT_RECEIPT"
   target_class: "SELFREALITY_RUNTIME"
-  authority_ref: null
-  status: DECLARED
+  authority_ref: AUTH-LOCAL-SELFREALITY-WRITE-001
+  status: AUTHORIZED_BY_EXPLICIT_AUTHORITY
+
+authority:
+  authority_ref: AUTH-LOCAL-SELFREALITY-WRITE-001
+  identity_ref: IDENTITY-OURSELFPIMAC-QWEN-CODE
+  target_ref: SELFREALITY#FIRST-ALCHEMY-LAUNCH
+  capability_ref: CAPABILITYSELF/WRITE_EFFECT_RECEIPT
+  action_ref: ACTUATIONSELF/WRITE_EFFECT_RECEIPT
+  scope: LOCAL
+  external_effect: false
+  expires: SESSION_ONLY
 
 request_type:
   type: CAPABILITY_ACTUATION
