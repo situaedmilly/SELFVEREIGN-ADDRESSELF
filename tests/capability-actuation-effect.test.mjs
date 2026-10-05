@@ -10,6 +10,8 @@ assert.match(protocol, /ACTUATIONSELF/);
 assert.match(protocol, /EFFECTSELF/);
 assert.match(protocol, /CAPABILITY != AUTHORITY/);
 assert.match(protocol, /ACTUATION != EFFECT/);
+assert.match(protocol, /execution timestamp/);
+assert.match(protocol, /state delta/);
 
 for (const field of [
   "request_type",
@@ -28,17 +30,16 @@ assert.match(config, /location_hint: SELFVEREIGN-ADDRESSELF/);
 assert.match(config, /mode: ON_DEMAND/);
 assert.match(config, /effect_surface: runtime\/effects\/last-effect\.json/);
 
-assert.match(runtime, /mkdirSync/);
+assert.match(runtime, /existsSync/);
+assert.match(runtime, /observedAt/);
+assert.match(runtime, /state_delta/);
 assert.match(runtime, /writeFileSync/);
 assert.match(runtime, /readFileSync/);
 assert.match(runtime, /CAPABILITYSELF=RESOLVED/);
 assert.match(runtime, /ACTUATIONSELF=EXECUTED/);
 assert.match(runtime, /EFFECTSELF=OBSERVED/);
-assert.match(runtime, /AUTHORITY=NONE/);
 
 console.log("CAPABILITY_ACTUATION_EFFECT_CONFORMANCE=PASS");
-console.log("LOCATION_HINT=EXPLICIT");
-console.log("FREQUENCY=EXPLICIT");
-console.log("CAPABILITY=DEFINED");
-console.log("ACTUATION=IMPLEMENTED");
-console.log("EFFECT=OBSERVABLE_POSTCONDITION");
+console.log("OBSERVED_AT=REQUIRED");
+console.log("STATE_DELTA=REQUIRED");
+console.log("AUTHORITY=NONE");
