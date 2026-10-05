@@ -1,0 +1,45 @@
+{
+  "receipt_version": "0.1",
+  "receipt_type": "THIRDEYE_LOCAL_EXECUTION",
+  "observed_at": "2026-10-05T18:45:45Z",
+  "repository": "situaedmilly/SELFVEREIGN-ADDRESSELF",
+  "branch": "feat/selfgraph-identity-admission-authority-v0.1",
+  "implementation_commit": "ceb280f8446a3c32e0a58e350fa160d4d14c36a3",
+  "execution_environment": "session-sandbox-local-copy",
+  "command": "node tests/identity-admission-authority.test.mjs",
+  "test_result": "PASS",
+  "stages": {
+    "IDENTITYSELF": "PASS",
+    "ADMISSIONSELF": "ADMITTED",
+    "AUTHORITYSELF": "NO_AUTHORITY"
+  },
+  "identity": {
+    "identity_id": "IDENTITY-OURSELFPIMAC-QWEN-CODE",
+    "target_ref": "OURSELFPIMAC#QWEN-CODE",
+    "instance_address": "ia://ourself.ecosystem/node/OURSELFPIMAC#QWEN-CODE",
+    "location_ref": "workspace://~/Projects/ourself-core",
+    "provenance_ref": "THIRDEYE-QWEN-WINDOW",
+    "currentness": "OBSERVED"
+  },
+  "admission": {
+    "admission_id": "ADMISSION-f2abfee3f5fd4aa7",
+    "policy_id": "ADMISSIONSELF-BOUNDED-0.1",
+    "decision": "ADMITTED"
+  },
+  "authority": {
+    "authority_id": null,
+    "decision": "NO_AUTHORITY",
+    "action_scope": "LOCAL_MODEL_INFERENCE_ONLY"
+  },
+  "actuation": false,
+  "effect": false,
+  "sha256": {
+    "node/ourself-mac.yaml": "a0ebc34ed8b47b466ec0e1d84c6ce76d44d37d57a55444a796cb9648d4a34ed5",
+    "reality/identity-admission-authority.yaml": "503b4d29c0b44e679695018cf1db9f40cded2e0104e7fe89a7ea0a5c7fee8536",
+    "reality/identity-admission-authority.mjs": "5e51757fc1cca754fbb010905200feaf85d8d204d1a743b95202a3fe734ef98a",
+    "protocol/IDENTITYSELF.md": "5ad9d760d37ca3ca14bbe9161347ce983664b71a7d8ed399b79ef9557b13414f",
+    "protocol/ADMISSIONSELF.md": "637cef38fc68d8e8cf451090717e4405559d35f46fc0ca4dbf35be4c67ee76ce",
+    "protocol/AUTHORITYSELF.md": "701158de2c27b11fe61effbc3a42539302b0197e44109c7fd07f865b2dd4fb34"
+  },
+  "note": "Execution proves the implementation's bounded decision path in this environment. It does not prove execution on OURSELFPIMAC or grant external authority."
+}
