@@ -1,0 +1,16 @@
+request:
+  request_type: "IDENTITY_ADMISSION_AUTHORITY_EVALUATION"
+  target_ref: "OURSELFPIMAC#QWEN-CODE"
+  location_hint: "SELFVEREIGN-ADDRESSELF"
+  frequency: "ON_DEMAND"
+  requested_action_scope: "LOCAL_MODEL_INFERENCE_ONLY"
+
+policy:
+  policy_id: "ADMISSIONSELF-BOUNDED-0.1"
+  required_identity_type: "RUNTIME_INSTANCE"
+  required_currentness: "OBSERVED,VERIFIED"
+  required_provenance: true
+
+authority:
+  authority_ref: null
+  status: "NOT_SUPPLIED"
