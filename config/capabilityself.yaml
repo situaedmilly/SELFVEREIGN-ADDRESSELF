@@ -29,5 +29,17 @@ action:
 effect:
   effect_type: LOCAL_RUNTIME_STATE_DELTA
   effect_surface: runtime/effects/last-effect.json
+  required_fields:
+    - target_ref
+    - capability_ref
+    - action_ref
+    - observed_at
+    - state_delta
   postcondition: "effect file exists and matches the action target"
+  authority_ref: null
+
+receipt:
+  receipt_type: RECEIPTSELF/EFFECT_BINDING
+  receipt_surface: runtime/receipts/last-receipt.json
+  binding: SHA256_OF_EXACT_OBSERVED_EFFECT_BYTES
   authority_ref: null
