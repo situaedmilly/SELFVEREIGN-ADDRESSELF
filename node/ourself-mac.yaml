@@ -1,0 +1,86 @@
+node:
+  node_id: "OURSELFPIMAC"
+  node_type: "COGNITIVE_AND_CODE_RUNTIME_NODE"
+  namespace: "OURSELF_ECOSYSTEM"
+  address:
+    form: "sna://ourself.ecosystem/node/OURSELFPIMAC"
+    status: "DECLARED"
+  status: "OBSERVED"
+  witness_ref: "THIRDEYE-PAIRED-MAC-WITNESS"
+  authority_ref: null
+
+  surfaces:
+    - surface_id: "QWEN-CODE"
+      transport: "LOCAL"
+      endpoint: "workspace://~/Projects/ourself-core"
+      protocol: "QWEN_CODE_SHELL"
+      capabilities:
+        - "shell_command_execution"
+        - "repository_interaction"
+      status: "OBSERVED"
+      authority_ref: null
+      witness_ref: "THIRDEYE-QWEN-WINDOW"
+
+    - surface_id: "TERMINAL"
+      transport: "LOCAL"
+      endpoint: "local://mac-terminal"
+      protocol: "SHELL"
+      capabilities:
+        - "shell_command_execution"
+      status: "OBSERVED"
+      authority_ref: null
+      witness_ref: "THIRDEYE-PAIRED-MAC-WITNESS"
+
+    - surface_id: "OLLAMA"
+      transport: "LOCAL"
+      endpoint: "local://ollama"
+      protocol: "OLLAMA_API"
+      capabilities:
+        - "model_inference"
+      status: "OBSERVED"
+      authority_ref: null
+      witness_ref: "THIRDEYE-PAIRED-MAC-WITNESS"
+
+    - surface_id: "OURSELFD"
+      transport: "LOCAL"
+      endpoint: "local://ourselfd"
+      protocol: "OURSELFD_AUTHORITY_API"
+      capabilities:
+        - "governed_runtime_operations"
+      status: "DECLARED"
+      authority_ref: null
+      witness_ref: null
+
+    - surface_id: "AGENTBRIDGE"
+      transport: "LOCAL"
+      endpoint: "local://agentbridge"
+      protocol: "AGENTBRIDGE"
+      capabilities:
+        - "bounded_command_transport"
+      status: "DECLARED"
+      authority_ref: null
+      witness_ref: null
+
+    - surface_id: "UREELENGINE"
+      transport: "UNKNOWN"
+      endpoint: "unresolved://ureelengine"
+      protocol: "UNKNOWN"
+      capabilities: []
+      status: "DECLARED"
+      authority_ref: null
+      witness_ref: null
+
+constitutional_note:
+  addressability_is_not_authority: true
+  endpoint_reachability_is_not_permission: true
+  capability_declaration_is_not_capability_possession: true
+  receipt_is_not_effect: true
+  observation_is_not_authority: true
+
+next_transition:
+  - "freeze SNA contract"
+  - "recontact current node state"
+  - "implement resolver"
+  - "implement admission membrane"
+  - "bind transports"
+  - "admit external nodes such as BubbleIO"
