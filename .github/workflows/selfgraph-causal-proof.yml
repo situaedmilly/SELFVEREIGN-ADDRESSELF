@@ -1,0 +1,23 @@
+name: SELFGRAPH local causal proof
+
+on:
+  push:
+    branches:
+      - feat/selfgraph-reality-v0.1
+  workflow_dispatch:
+
+jobs:
+  causal-proof:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --test tests/capability-actuation-effect.test.mjs tests/capabilityself-gate.test.mjs tests/authority-capability-actuation-receipt.test.mjs
+      - run: node reality/run-capability-actuation-effect.mjs
+      - run: |
+          test -f runtime/effects/last-effect.json
+          test -f runtime/receipts/last-receipt.json
