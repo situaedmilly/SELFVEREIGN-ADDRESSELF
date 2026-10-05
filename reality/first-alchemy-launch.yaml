@@ -1,0 +1,25 @@
+request:
+  request_type: ALCHEMY_LAUNCH
+  target_ref: SELFREALITY#FIRST-ALCHEMY-LAUNCH
+  location_hint: SELFVEREIGN-ADDRESSELF
+  frequency: ON_DEMAND
+  runtime: NODE
+  script_ref: reality/boot-runtime.mjs
+
+launch_instance:
+  instance_address: ia://ourself.ecosystem/reality/SELFREALITY#FIRST-ALCHEMY-LAUNCH
+  surface_address: ia://ourself.ecosystem/reality/SELFREALITY#BOOT-RUNTIME
+  authority_ref: null
+  actuation: null
+  effect: null
+
+graph:
+  canonical: protocol/SELFGRAPH.md
+  current_execution_boundary: ADDRESSSELF
+  next_primitive: IDENTITYSELF
+
+constraints:
+  location_hint_is_not_authority: true
+  frequency_is_not_authority: true
+  launch_request_is_not_authority: true
+  preparation_is_not_effect: true
