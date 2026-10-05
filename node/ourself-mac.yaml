@@ -2,75 +2,97 @@ node:
   node_id: "OURSELFPIMAC"
   node_type: "COGNITIVE_AND_CODE_RUNTIME_NODE"
   namespace: "OURSELF_ECOSYSTEM"
-  address:
-    form: "sna://ourself.ecosystem/node/OURSELFPIMAC"
-    status: "DECLARED"
   status: "OBSERVED"
   witness_ref: "THIRDEYE-PAIRED-MAC-WITNESS"
   authority_ref: null
-
   surfaces:
-    - surface_id: "QWEN-CODE"
-      transport: "LOCAL"
-      endpoint: "workspace://~/Projects/ourself-core"
-      protocol: "QWEN_CODE_SHELL"
-      capabilities:
-        - "shell_command_execution"
-        - "repository_interaction"
-      status: "OBSERVED"
-      authority_ref: null
-      witness_ref: "THIRDEYE-QWEN-WINDOW"
 
-    - surface_id: "TERMINAL"
-      transport: "LOCAL"
-      endpoint: "local://mac-terminal"
-      protocol: "SHELL"
-      capabilities:
-        - "shell_command_execution"
-      status: "OBSERVED"
-      authority_ref: null
-      witness_ref: "THIRDEYE-PAIRED-MAC-WITNESS"
+    - sna:
+        version: "SNA/0.1"
+        namespace: "OURSELF_ECOSYSTEM"
+        node_id: "OURSELFPIMAC"
+        surface_id: "QWEN-CODE"
+        transport: "LOCAL"
+        endpoint: "workspace://~/Projects/ourself-core"
+        protocol: "QWEN_CODE_SHELL"
+        capabilities:
+          - "shell_command_execution"
+          - "repository_interaction"
+        authority_ref: null
+        witness_ref: "THIRDEYE-QWEN-WINDOW"
+        status: "OBSERVED"
 
-    - surface_id: "OLLAMA"
-      transport: "LOCAL"
-      endpoint: "local://ollama"
-      protocol: "OLLAMA_API"
-      capabilities:
-        - "model_inference"
-      status: "OBSERVED"
-      authority_ref: null
-      witness_ref: "THIRDEYE-PAIRED-MAC-WITNESS"
+    - sna:
+        version: "SNA/0.1"
+        namespace: "OURSELF_ECOSYSTEM"
+        node_id: "OURSELFPIMAC"
+        surface_id: "TERMINAL"
+        transport: "LOCAL"
+        endpoint: "local://mac-terminal"
+        protocol: "SHELL"
+        capabilities:
+          - "shell_command_execution"
+        authority_ref: null
+        witness_ref: "THIRDEYE-PAIRED-MAC-WITNESS"
+        status: "OBSERVED"
 
-    - surface_id: "OURSELFD"
-      transport: "LOCAL"
-      endpoint: "local://ourselfd"
-      protocol: "OURSELFD_AUTHORITY_API"
-      capabilities:
-        - "governed_runtime_operations"
-      status: "DECLARED"
-      authority_ref: null
-      witness_ref: null
+    - sna:
+        version: "SNA/0.1"
+        namespace: "OURSELF_ECOSYSTEM"
+        node_id: "OURSELFPIMAC"
+        surface_id: "OLLAMA"
+        transport: "LOCAL"
+        endpoint: "local://ollama"
+        protocol: "OLLAMA_API"
+        capabilities:
+          - "model_inference"
+        authority_ref: null
+        witness_ref: "THIRDEYE-PAIRED-MAC-WITNESS"
+        status: "OBSERVED"
 
-    - surface_id: "AGENTBRIDGE"
-      transport: "LOCAL"
-      endpoint: "local://agentbridge"
-      protocol: "AGENTBRIDGE"
-      capabilities:
-        - "bounded_command_transport"
-      status: "DECLARED"
-      authority_ref: null
-      witness_ref: null
+    - sna:
+        version: "SNA/0.1"
+        namespace: "OURSELF_ECOSYSTEM"
+        node_id: "OURSELFPIMAC"
+        surface_id: "OURSELFD"
+        transport: "LOCAL"
+        endpoint: "local://ourselfd"
+        protocol: "OURSELFD_AUTHORITY_API"
+        capabilities:
+          - "governed_runtime_operations"
+        authority_ref: null
+        witness_ref: null
+        status: "DECLARED"
 
-    - surface_id: "UREELENGINE"
-      transport: "UNKNOWN"
-      endpoint: "unresolved://ureelengine"
-      protocol: "UNKNOWN"
-      capabilities: []
-      status: "DECLARED"
-      authority_ref: null
-      witness_ref: null
+    - sna:
+        version: "SNA/0.1"
+        namespace: "OURSELF_ECOSYSTEM"
+        node_id: "OURSELFPIMAC"
+        surface_id: "AGENTBRIDGE"
+        transport: "LOCAL"
+        endpoint: "local://agentbridge"
+        protocol: "AGENTBRIDGE"
+        capabilities:
+          - "bounded_command_transport"
+        authority_ref: null
+        witness_ref: null
+        status: "DECLARED"
+
+    - sna:
+        version: "SNA/0.1"
+        namespace: "OURSELF_ECOSYSTEM"
+        node_id: "OURSELFPIMAC"
+        surface_id: "UREELENGINE"
+        transport: "UNKNOWN"
+        endpoint: "unresolved://ureelengine"
+        protocol: "UNKNOWN"
+        capabilities: []
+        authority_ref: null
+        witness_ref: null
+        status: "DECLARED"
 
 constitutional_note:
+  canonical_surface_address_path: "node.surfaces[].sna"
   addressability_is_not_authority: true
   endpoint_reachability_is_not_permission: true
   capability_declaration_is_not_capability_possession: true
