@@ -1,4 +1,4 @@
-import { mkdirSync, writeFileSync, readFileSync } from "node:fs";
+import { mkdirSync, writeFileSync, readFileSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
 
 const root = resolve(import.meta.dirname, "..");
@@ -22,6 +22,8 @@ for (const token of required) {
 const target = "SELFREALITY#FIRST-ALCHEMY-LAUNCH";
 const capability = "CAPABILITYSELF/WRITE_EFFECT_RECEIPT";
 const action = "ACTUATIONSELF/WRITE_EFFECT_RECEIPT";
+const existedBefore = existsSync(effectPath);
+const observedAt = new Date().toISOString();
 
 mkdirSync(effectDir, { recursive: true });
 
@@ -33,6 +35,12 @@ const effect = {
   location_hint: "SELFVEREIGN-ADDRESSELF",
   frequency: "ON_DEMAND",
   authority_ref: null,
+  observed_at: observedAt,
+  state_delta: {
+    surface: "runtime/effects/last-effect.json",
+    before: existedBefore ? "present" : "absent",
+    after: "present"
+  },
   postcondition: "effect file exists and matches the action target"
 };
 
@@ -43,6 +51,8 @@ const observed = JSON.parse(readFileSync(effectPath, "utf8"));
 if (observed.target_ref !== target) throw new Error("EFFECT_TARGET_MISMATCH");
 if (observed.action_ref !== action) throw new Error("EFFECT_ACTION_MISMATCH");
 if (observed.capability_ref !== capability) throw new Error("EFFECT_CAPABILITY_MISMATCH");
+if (!observed.observed_at) throw new Error("EFFECT_TIMESTAMP_MISSING");
+if (observed.state_delta?.after !== "present") throw new Error("EFFECT_STATE_DELTA_MISSING");
 
 console.log("CAPABILITYSELF=RESOLVED");
 console.log("ACTUATIONSELF=EXECUTED");
@@ -52,3 +62,5 @@ console.log("LOCATION_HINT=SELFVEREIGN-ADDRESSELF");
 console.log("FREQUENCY=ON_DEMAND");
 console.log("AUTHORITY=NONE");
 console.log("EFFECT_SURFACE=runtime/effects/last-effect.json");
+console.log("OBSERVED_AT=" + observed.observed_at);
+console.log("STATE_DELTA=" + observed.state_delta.before + "->" + observed.state_delta.after);
