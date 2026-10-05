@@ -1,0 +1,92 @@
+schema:
+  id: "SELFVEREIGN-ADDRESSELF/NODE/1.0"
+  type: "NODE_RECORD"
+
+definitions:
+  status:
+    type: enum
+    values:
+      - DECLARED
+      - OBSERVED
+      - VERIFIED
+      - QUARANTINED
+      - RETIRED
+
+  transport:
+    type: enum
+    values:
+      - LOCAL
+      - HTTPS
+      - HTTP
+      - STDIO
+      - IPC
+      - UNKNOWN
+
+  sna:
+    required:
+      - version
+      - namespace
+      - node_id
+      - surface_id
+      - transport
+      - endpoint
+      - protocol
+      - capabilities
+      - authority_ref
+      - witness_ref
+      - status
+    fields:
+      version:
+        type: string
+        description: "SNA contract version"
+      namespace:
+        type: string
+        description: "Address namespace or jurisdiction"
+      node_id:
+        type: string
+        description: "Logical identity of the addressed node"
+      surface_id:
+        type: string
+        description: "Unique identifier for one exposed surface on the node"
+      transport:
+        type: enum_ref
+        ref: "#/definitions/transport"
+      endpoint:
+        type: string
+        description: "Addressable locator; may be local or networked"
+      protocol:
+        type: string
+        description: "Protocol or interaction contract exposed by the surface"
+      capabilities:
+        type: array
+        items:
+          type: string
+        description: "Declared/witnessed operation classes; not authority"
+      authority_ref:
+        type: string_or_null
+        description: "Reference to separate authority relation"
+      witness_ref:
+        type: string_or_null
+        description: "Reference to evidence supporting currentness"
+      status:
+        type: enum_ref
+        ref: "#/definitions/status"
+
+invariants:
+  - "node_id != surface_id"
+  - "surface_id != endpoint"
+  - "capability != authority"
+  - "addressability != authority"
+  - "receipt != effect"
+  - "observation != authority"
+
+verification:
+  VERIFIED:
+    requirements:
+      - "Required fields are present"
+      - "Current witness exists for the asserted record"
+      - "The witness supports the exact node/surface binding"
+  mutation:
+    requirements:
+      - "SNA resolution alone MUST NOT authorize mutation"
+      - "Mutating actions require a separate authority relation"
