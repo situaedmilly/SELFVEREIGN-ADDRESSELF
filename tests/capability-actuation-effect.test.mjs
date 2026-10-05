@@ -2,6 +2,7 @@ import { strict as assert } from "node:assert";
 import { readFileSync } from "node:fs";
 
 const protocol = readFileSync("protocol/CAPABILITY-ACTUATION-EFFECT.md", "utf8");
+const receiptProtocol = readFileSync("protocol/RECEIPTSELF.md", "utf8");
 const config = readFileSync("config/capabilityself.yaml", "utf8");
 const runtime = readFileSync("reality/run-capability-actuation-effect.mjs", "utf8");
 
@@ -10,6 +11,9 @@ assert.match(protocol, /ACTUATIONSELF/);
 assert.match(protocol, /EFFECTSELF/);
 assert.match(protocol, /CAPABILITY != AUTHORITY/);
 assert.match(protocol, /ACTUATION != EFFECT/);
+assert.match(receiptProtocol, /RECEIPTSELF/);
+assert.match(receiptProtocol, /SHA-256\\(observed effect bytes\\)/);
+assert.match(receiptProtocol, /EFFECT != RECEIPT/);
 
 for (const field of [
   "request_type",
@@ -35,6 +39,13 @@ assert.match(runtime, /CAPABILITYSELF=RESOLVED/);
 assert.match(runtime, /ACTUATIONSELF=EXECUTED/);
 assert.match(runtime, /EFFECTSELF=OBSERVED/);
 assert.match(runtime, /AUTHORITY=NONE/);
+for (const field of ["observed_at","state_delta","effect_sha256"]) {
+  assert.match(runtime, new RegExp(field));
+  assert.match(receiptProtocol, new RegExp(field));
+}
+assert.match(config, /receipt_surface: runtime\\/receipts\\/last-receipt\\.json/);
+assert.match(runtime, /RECEIPTSELF=BOUND/);
+assert.match(runtime, /createHash/);
 
 console.log("CAPABILITY_ACTUATION_EFFECT_CONFORMANCE=PASS");
 console.log("LOCATION_HINT=EXPLICIT");
