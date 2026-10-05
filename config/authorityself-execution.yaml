@@ -1,0 +1,8 @@
+authority:
+  authority_id: AUTH-LOCAL-SELFREALITY-WRITE-001
+  subject_identity: IDENTITY-OURSELFPIMAC-QWEN-CODE
+  target_ref: SELFREALITY#FIRST-ALCHEMY-LAUNCH
+  scope: ACTUATIONSELF/WRITE_EFFECT_RECEIPT
+  status: ACTIVE
+  issuer: FOUNDER_DECLARED_RUNTIME_SCOPE
+  provenance: "Explicit execution instruction for bounded local runtime transition"
