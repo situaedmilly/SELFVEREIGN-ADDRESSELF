@@ -19,7 +19,7 @@ const requiredSnaFields = [
 ];
 
 for (const field of requiredSnaFields) {
-  assert.match(schema, new RegExp(String.raw`\\b${field.replace(":", ":")}\\b`));
+  assert.ok(schema.includes(`      ${field}`), `schema missing SNA field: ${field}`);
 }
 
 const surfaceBlocks = node.split(/^    - sna:\s*$/m).slice(1);
@@ -27,7 +27,7 @@ assert.equal(surfaceBlocks.length, 6, "OURSELFPIMAC must expose six canonical SN
 
 const surfaceIds = [];
 for (const block of surfaceBlocks) {
-  for (const field of ["version:", "namespace:", "node_id:", "surface_id:", "transport:", "endpoint:", "protocol:", "capabilities:", "authority_ref:", "witness_ref:", "status:"]) {
+  for (const field of requiredSnaFields) {
     assert.match(block, new RegExp(String.raw`^        ${field}`, "m"), `missing canonical SNA field: ${field}`);
   }
 
