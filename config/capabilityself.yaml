@@ -1,0 +1,33 @@
+capability:
+  capability_id: CAPABILITYSELF/WRITE_EFFECT_RECEIPT
+  version: "0.1"
+  operation: "WRITE_EFFECT_RECEIPT"
+  target_class: "SELFREALITY_RUNTIME"
+  authority_ref: null
+  status: DECLARED
+
+request_type:
+  type: CAPABILITY_ACTUATION
+  required:
+    - request_type
+    - target_ref
+    - location_hint
+    - frequency
+    - capability_ref
+    - action_ref
+
+location:
+  location_hint: SELFVEREIGN-ADDRESSELF
+
+frequency:
+  mode: ON_DEMAND
+
+action:
+  action_ref: ACTUATIONSELF/WRITE_EFFECT_RECEIPT
+  implementation: reality/run-capability-actuation-effect.mjs
+
+effect:
+  effect_type: LOCAL_RUNTIME_STATE_DELTA
+  effect_surface: runtime/effects/last-effect.json
+  postcondition: "effect file exists and matches the action target"
+  authority_ref: null
