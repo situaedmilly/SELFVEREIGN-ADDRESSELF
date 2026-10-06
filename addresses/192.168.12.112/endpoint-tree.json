@@ -1,0 +1,118 @@
+{
+  "schema": "ADDRESSSELF-ENDPOINT-TREE-v0.1",
+  "status": "OBSERVED_CONFIGURED",
+  "authority": "OURSELF",
+  "root": {
+    "node_id": "ADDR-192-168-12-112",
+    "kind": "NETWORK_ENDPOINT",
+    "address": "192.168.12.112",
+    "parent_id": null,
+    "relation": "ROOT_ENDPOINT",
+    "children": [
+      "ADDR-192-168-12-112-22",
+      "ADDR-192-168-12-112-3000",
+      "ADDR-192-168-12-112-11434"
+    ]
+  },
+  "nodes": [
+    {
+      "node_id": "ADDR-192-168-12-112-22",
+      "parent_id": "ADDR-192-168-12-112",
+      "kind": "SERVICE_ENDPOINT",
+      "address": "192.168.12.112:22",
+      "protocol": "SSH",
+      "status": "OBSERVED",
+      "children": []
+    },
+    {
+      "node_id": "ADDR-192-168-12-112-3000",
+      "parent_id": "ADDR-192-168-12-112",
+      "kind": "SERVICE_ENDPOINT",
+      "address": "http://192.168.12.112:3000",
+      "protocol": "HTTP",
+      "status": "OBSERVED",
+      "children": [
+        "ADDR-192-168-12-112-3000-health",
+        "ADDR-192-168-12-112-3000-mcp",
+        "ADDR-192-168-12-112-3000-v1-models"
+      ]
+    },
+    {
+      "node_id": "ADDR-192-168-12-112-3000-health",
+      "parent_id": "ADDR-192-168-12-112-3000",
+      "kind": "ROUTE",
+      "address": "http://192.168.12.112:3000/health",
+      "method": "GET",
+      "status": "OBSERVED_LIVE",
+      "evidence": {
+        "http_status": 200
+      },
+      "children": []
+    },
+    {
+      "node_id": "ADDR-192-168-12-112-3000-mcp",
+      "parent_id": "ADDR-192-168-12-112-3000",
+      "kind": "ROUTE",
+      "address": "http://192.168.12.112:3000/mcp",
+      "method": "GET/POST",
+      "status": "NOT_DECLARED_LIVE",
+      "children": []
+    },
+    {
+      "node_id": "ADDR-192-168-12-112-3000-v1-models",
+      "parent_id": "ADDR-192-168-12-112-3000",
+      "kind": "ROUTE",
+      "address": "http://192.168.12.112:3000/v1/models",
+      "method": "GET",
+      "status": "OBSERVED_NOT_FOUND",
+      "evidence": {
+        "http_status": 404
+      },
+      "children": []
+    },
+    {
+      "node_id": "ADDR-192-168-12-112-11434",
+      "parent_id": "ADDR-192-168-12-112",
+      "kind": "SERVICE_ENDPOINT",
+      "address": "http://192.168.12.112:11434",
+      "protocol": "HTTP",
+      "status": "OBSERVED",
+      "children": [
+        "ADDR-192-168-12-112-11434-v1-models",
+        "ADDR-192-168-12-112-11434-mcp"
+      ]
+    },
+    {
+      "node_id": "ADDR-192-168-12-112-11434-v1-models",
+      "parent_id": "ADDR-192-168-12-112-11434",
+      "kind": "ROUTE",
+      "address": "http://192.168.12.112:11434/v1/models",
+      "method": "GET",
+      "status": "OBSERVED_LIVE",
+      "evidence": {
+        "http_status": 200
+      },
+      "children": []
+    },
+    {
+      "node_id": "ADDR-192-168-12-112-11434-mcp",
+      "parent_id": "ADDR-192-168-12-112-11434",
+      "kind": "ROUTE",
+      "address": "http://192.168.12.112:11434/mcp",
+      "method": "GET/POST",
+      "status": "OBSERVED_NOT_FOUND",
+      "evidence": {
+        "http_status": 404
+      },
+      "children": []
+    }
+  ],
+  "pointer_contract": {
+    "query": "WHERE_IS(node_id|address)",
+    "create": "CREATE_CHILD(parent_id,node)",
+    "children": "CHILDREN_OF(parent_id)",
+    "parent": "PARENT_OF(node_id)",
+    "resolve": "RESOLVE(address)",
+    "rule": "Every non-root node MUST reference exactly one parent_id; endpoint state MUST NOT be inferred from declaration alone."
+  }
+}
