@@ -1,6 +1,6 @@
 {
-  "schema": "ADDRESSSELF-ENDPOINT-TREE-v0.1",
-  "status": "OBSERVED_CONFIGURED",
+  "schema": "ADDRESSSELF-ENDPOINT-TREE-v0.2",
+  "status": "WITNESS_READY",
   "authority": "OURSELF",
   "root": {
     "node_id": "ADDR-192-168-12-112",
@@ -33,7 +33,7 @@
       "status": "OBSERVED",
       "children": [
         "ADDR-192-168-12-112-3000-health",
-        "ADDR-192-168-12-112-3000-mcp",
+        "ADDR-192-168-12-112-3000-mcpAGENTBRIDGE01",
         "ADDR-192-168-12-112-3000-v1-models"
       ]
     },
@@ -50,10 +50,11 @@
       "children": []
     },
     {
-      "node_id": "ADDR-192-168-12-112-3000-mcp",
+      "node_id": "ADDR-192-168-12-112-3000-mcpAGENTBRIDGE01",
       "parent_id": "ADDR-192-168-12-112-3000",
-      "kind": "ROUTE",
-      "address": "http://192.168.12.112:3000/mcp",
+      "kind": "AGENTBRIDGE_ENDPOINT",
+      "agentbridge_id": "AGENTBRIDGE01",
+      "address": "http://192.168.12.112:3000/mcpAGENTBRIDGE01",
       "method": "GET/POST",
       "status": "NOT_DECLARED_LIVE",
       "children": []
@@ -78,15 +79,16 @@
       "protocol": "HTTP",
       "status": "OBSERVED",
       "children": [
-        "ADDR-192-168-12-112-11434-v1-models",
+        "ADDR-192-168-12-112-11434-v1-modelAGENTBRIDGE02",
         "ADDR-192-168-12-112-11434-mcp"
       ]
     },
     {
-      "node_id": "ADDR-192-168-12-112-11434-v1-models",
+      "node_id": "ADDR-192-168-12-112-11434-v1-modelAGENTBRIDGE02",
       "parent_id": "ADDR-192-168-12-112-11434",
-      "kind": "ROUTE",
-      "address": "http://192.168.12.112:11434/v1/models",
+      "kind": "AGENTBRIDGE_ENDPOINT",
+      "agentbridge_id": "AGENTBRIDGE02",
+      "address": "http://192.168.12.112:11434/v1/modelAGENTBRIDGE02",
       "method": "GET",
       "status": "OBSERVED_LIVE",
       "evidence": {
@@ -114,5 +116,23 @@
     "parent": "PARENT_OF(node_id)",
     "resolve": "RESOLVE(address)",
     "rule": "Every non-root node MUST reference exactly one parent_id; endpoint state MUST NOT be inferred from declaration alone."
+  },
+  "agentbridge_contract": {
+    "endpoints": [
+      {
+        "id": "AGENTBRIDGE01",
+        "node_id": "ADDR-192-168-12-112-3000-mcpAGENTBRIDGE01",
+        "address": "http://192.168.12.112:3000/mcpAGENTBRIDGE01",
+        "state": "NOT_DECLARED_LIVE"
+      },
+      {
+        "id": "AGENTBRIDGE02",
+        "node_id": "ADDR-192-168-12-112-11434-v1-modelAGENTBRIDGE02",
+        "address": "http://192.168.12.112:11434/v1/modelAGENTBRIDGE02",
+        "state": "OBSERVED_LIVE"
+      }
+    ],
+    "symmetry": "AGENTBRIDGE endpoint identity is represented by canonical AddressSelf node_id; consumers MUST resolve rather than duplicate topology.",
+    "witness_state": "READY"
   }
 }
