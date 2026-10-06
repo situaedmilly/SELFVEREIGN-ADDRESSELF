@@ -1,0 +1,20 @@
+{
+  "schema": "OURSELF-ENDPOINT-ADDRESS-v0.1",
+  "instance_id": "ALCHEMYSELFRVER01",
+  "class": "MODELSELF",
+  "role": "GENESIS_MODEL_INFERENCE_ENDPOINT",
+  "authority": "OURSELF",
+  "address_state": "DECLARED",
+  "transport": "HTTP_OPENAI_COMPATIBLE",
+  "endpoint": "ENV:GENESIS_ENDPOINT",
+  "api_base": "/v1",
+  "health": "/health",
+  "execution_repo": "situaedmilly/FLOWACTIONSELFWORK",
+  "cognition_repo": "situaedmilly/Cognitive-Transmutation-Core",
+  "infrastructure_repo": "situaedmilly/ourself-cloud-server-network",
+  "registry_repo": "situaedmilly/ALTONUMBUSELF",
+  "model_artifact_local_to_mac": false,
+  "addressability_rule": "endpoint identity is distinct from model artifact identity",
+  "authority_rule": "addressability does not grant authority",
+  "proof_rule": "DECLARED is not BOOTED; BOOTED requires host execution receipt"
+}
