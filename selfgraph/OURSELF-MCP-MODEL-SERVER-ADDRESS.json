@@ -1,0 +1,18 @@
+{
+  "graph_event_id": "ADDRESS-EVENT-OURSELF-MCP-MODEL-0001",
+  "node_id": "OURSELF-MCP-MODEL-SERVER",
+  "instance_id": "OURSELF-INSTANCE-0001",
+  "server_id": "OURSELF-SERVER-0001",
+  "address_role": "SOVEREIGN_NETWORK_ADDRESS_AND_SIGNALING",
+  "network_repo": "situaedmilly/ourself-cloud-server-network",
+  "execution_repo": "situaedmilly/FLOWACTIONSELFWORK",
+  "cognition_repo": "situaedmilly/Cognitive-Transmutation-Core",
+  "core_repo": "situaedmilly/ourself-core",
+  "served_artifact": "https://raw.githubusercontent.com/situaedmilly/ourself-cloud-server-network/main/instances/OURSELF-INSTANCE-0001/endpoint.json",
+  "runtime_transport": "STREAMABLE_HTTP",
+  "runtime_endpoint": null,
+  "runtime_endpoint_status": "NOT_YET_BOUND",
+  "authority": "OURSELF",
+  "status": "ADDRESSABLE_DECLARED",
+  "note": "GitHub-served endpoint is an address artifact, not proof that the MCP-model process is listening."
+}
