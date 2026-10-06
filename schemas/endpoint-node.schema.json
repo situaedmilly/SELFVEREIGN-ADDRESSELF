@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/situaedmilly/SELFVEREIGN-ADDRESSELF/schemas/endpoint-node.schema.json",
+  "title": "ADDRESSSELF Endpoint Node",
+  "type": "object",
+  "required": [
+    "node_id",
+    "kind",
+    "address",
+    "parent_id",
+    "status"
+  ],
+  "properties": {
+    "node_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "parent_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "kind": {
+      "enum": [
+        "NETWORK_ENDPOINT",
+        "SERVICE_ENDPOINT",
+        "ROUTE",
+        "RESOURCE"
+      ]
+    },
+    "address": {
+      "type": "string",
+      "minLength": 1
+    },
+    "protocol": {
+      "type": "string"
+    },
+    "method": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "children": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence": {
+      "type": "object"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "NETWORK_ENDPOINT"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "parent_id": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "enum": [
+              "SERVICE_ENDPOINT",
+              "ROUTE",
+              "RESOURCE"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "parent_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  ]
+}
