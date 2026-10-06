@@ -1,0 +1,38 @@
+schema:
+  id: "SELFVEREIGN-ADDRESSELF/ADDRESSSELF-REQUEST/0.1"
+  type: "ADDRESS_RESOLUTION_REQUEST"
+
+required:
+  - request_type
+  - target_ref
+  - location_hint
+  - frequency
+
+fields:
+  request_type:
+    type: enum
+    values:
+      - ADDRESS_RESOLUTION
+  target_ref:
+    type: string
+    description: "PointerSelfThirdEye target in ecosystem node#surface form"
+  location_hint:
+    type: string
+    description: "Explicit routing/disambiguation hint; not proof of current location"
+  frequency:
+    type: enum
+    values:
+      - ON_DEMAND
+      - PERIODIC
+      - EVENT_DRIVEN
+      - CONTINUOUS
+    description: "Requested resolution cadence; not authorization to poll or act"
+
+invariants:
+  - "location_hint is required on every ADDRESSSELF request"
+  - "frequency is required on every ADDRESSSELF request"
+  - "location_hint != authority"
+  - "frequency != authority"
+  - "target_ref != instance_address"
+  - "ADDRESS_RESOLUTION MUST NOT grant authority"
+  - "ADDRESS_RESOLUTION MUST NOT actuate"

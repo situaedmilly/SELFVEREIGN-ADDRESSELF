@@ -1,0 +1,50 @@
+{
+  "receipt_id": "SNA-V0.1-CONFORMANCE-001",
+  "protocol": "SELFVEREIGN-ADDRESSELF/SNA/0.1",
+  "branch": "feat/sna-contract-v0.1",
+  "source_head": "cca366eb1ccb8da34747a3987a8ae5c0914df28a",
+  "artifacts": {
+    "protocol/SNA.md": {
+      "status": "READ_BACK"
+    },
+    "protocol/node-schema.yaml": {
+      "status": "READ_BACK",
+      "blob_sha": "430e23da802a19f1081d14bb67144d74dc791282"
+    },
+    "node/ourself-mac.yaml": {
+      "status": "READ_BACK",
+      "blob_sha": "16dc4f694d9ab7ba2e2415ba4993a97cc6e3029d"
+    },
+    "tests/sna-conformance.mjs": {
+      "status": "EXECUTED",
+      "blob_sha": "5884553aff35f28ba5369e815a06b9b01c752c67"
+    }
+  },
+  "execution": {
+    "command": "node tests/sna-conformance.mjs",
+    "result": "PASS",
+    "exit_code": 0,
+    "canonical_surface_count": 6,
+    "surface_ids": [
+      "QWEN-CODE",
+      "TERMINAL",
+      "OLLAMA",
+      "OURSELFD",
+      "AGENTBRIDGE",
+      "UREELENGINE"
+    ],
+    "uniqueness_check": "PASS",
+    "parent_node_binding_check": "PASS",
+    "namespace_binding_check": "PASS",
+    "required_sna_fields_check": "PASS",
+    "authority_boundary_check": "PASS"
+  },
+  "mutation_boundary": {
+    "repository_files_mutated": true,
+    "runtime_actuation": false,
+    "transport_binding": false,
+    "bubbleio_binding": false,
+    "authority_granted_by_sna": false
+  },
+  "status": "SCHEMA_ALIGNED_CONFORMANCE_PASS"
+}
