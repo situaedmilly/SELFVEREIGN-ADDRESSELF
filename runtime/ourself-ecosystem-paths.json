@@ -1,6 +1,6 @@
 {
   "schema": "OURSELF-ECOSYSTEM-PATHS-v0.1",
-  "status": "DECLARED",
+  "status": "DECLARED_WITH_EXPLICIT_COGNITION_ENDPOINT",
   "workspace_root": "/Users/millysituated/OURSELF",
   "launch_realm": {
     "address_repo": {
@@ -28,7 +28,10 @@
     "instance_id": "OURSELF-INSTANCE-0001",
     "authority": "OURSELF",
     "ollama_role": "COGNITION_SUBSTRATE",
-    "model_target": "QWEN_27B_80K_LOCAL"
+    "model_target": "ourself-qwen38-27b-iq2s-80k:latest",
+    "cognition_endpoint": "http://192.168.12.112:11434/v1",
+    "cognition_provider": "OLLAMA",
+    "cognition_api_surface": "/v1/chat/completions"
   },
   "ecosystem_repos": [
     "situaedmilly/ourself-core",
@@ -47,5 +50,15 @@
     "situaedmilly/SELFVEREIGN-ADDRESSELF",
     "situaedmilly/FLOWACTIONSELFWORK",
     "situaedmilly/Cognitive-Transmutation-Core"
-  ]
+  ],
+  "endpoint_reality": {
+    "reality_id": "REVERSELF_COGNITIVE_TRANSMUTATION",
+    "address_host": "192.168.12.112",
+    "runtime_base_url": "http://192.168.12.112:3000",
+    "cognition_base_url": "http://192.168.12.112:11434/v1",
+    "runtime_health": "200",
+    "cognition_models": "200",
+    "runtime_mcp": "NOT_ESTABLISHED",
+    "cognition_mcp": "NOT_ESTABLISHED"
+  }
 }
