@@ -1,0 +1,59 @@
+{
+  "schema": "OURSELF-EXPLICIT-ENDPOINT-v0.1",
+  "reality_id": "REVERSELF_COGNITIVE_TRANSMUTATION",
+  "status": "EVIDENCE_OBSERVED",
+  "authority": "OURSELF",
+  "host": "192.168.12.112",
+  "surfaces": {
+    "ssh": {
+      "port": 22,
+      "protocol": "SSH",
+      "status": "OBSERVED"
+    },
+    "runtime": {
+      "port": 3000,
+      "base_url": "http://192.168.12.112:3000",
+      "health": {
+        "method": "GET",
+        "path": "/health",
+        "observed_status": 200
+      },
+      "mcp": {
+        "path": "/mcp",
+        "status": "NOT_ESTABLISHED"
+      },
+      "models": {
+        "path": "/v1/models",
+        "status": "404"
+      }
+    },
+    "cognition": {
+      "port": 11434,
+      "base_url": "http://192.168.12.112:11434",
+      "provider": "OLLAMA",
+      "models": {
+        "method": "GET",
+        "path": "/v1/models",
+        "status": "200"
+      },
+      "chat_completions": {
+        "method": "POST",
+        "path": "/v1/chat/completions",
+        "status": "ENDPOINT_DECLARED_BY_COMPATIBILITY_SURFACE"
+      },
+      "mcp": {
+        "path": "/mcp",
+        "status": "404"
+      }
+    }
+  },
+  "transmutation": {
+    "source": "OURSELF_RUNTIME",
+    "destination": "OURSELF_COGNITION_SUBSTRATE",
+    "cognitive_base_url": "http://192.168.12.112:11434/v1",
+    "model_discovery_path": "/models",
+    "inference_path": "/chat/completions",
+    "execution_status": "NOT_EXECUTED_FROM_GITHUB",
+    "note": "Network reachability evidence was supplied from the local substrate; GitHub cannot itself reach the private LAN endpoint."
+  }
+}
