@@ -1,0 +1,144 @@
+schema:
+  id: "SELFVEREIGN-ADDRESSELF/NODE/1.0"
+  type: "NODE_RECORD"
+
+definitions:
+  status:
+    type: enum
+    values:
+      - DECLARED
+      - OBSERVED
+      - VERIFIED
+      - QUARANTINED
+      - RETIRED
+
+  transport:
+    type: enum
+    values:
+      - LOCAL
+      - HTTPS
+      - HTTP
+      - STDIO
+      - IPC
+      - UNKNOWN
+
+  sna:
+    required:
+      - version
+      - namespace
+      - node_id
+      - surface_id
+      - transport
+      - endpoint
+      - protocol
+      - capabilities
+      - authority_ref
+      - witness_ref
+      - status
+    fields:
+      version:
+        type: string
+        description: "SNA contract version"
+      namespace:
+        type: string
+        description: "Address namespace or jurisdiction"
+      node_id:
+        type: string
+        description: "Logical identity of the addressed node"
+      surface_id:
+        type: string
+        description: "Unique identifier for one exposed surface on the node"
+      transport:
+        type: enum_ref
+        ref: "#/definitions/transport"
+      endpoint:
+        type: string
+        description: "Addressable locator for this node surface"
+      protocol:
+        type: string
+        description: "Protocol or interaction contract exposed by the surface"
+      capabilities:
+        type: array
+        items:
+          type: string
+        description: "Declared/witnessed operation classes; not authority"
+      authority_ref:
+        type: string_or_null
+        description: "Reference to separate authority relation"
+      witness_ref:
+        type: string_or_null
+        description: "Reference to evidence supporting currentness"
+      status:
+        type: enum_ref
+        ref: "#/definitions/status"
+
+  node:
+    required:
+      - node_id
+      - node_type
+      - namespace
+      - status
+      - witness_ref
+      - authority_ref
+      - surfaces
+    fields:
+      node_id:
+        type: string
+      node_type:
+        type: string
+      namespace:
+        type: string
+      status:
+        type: enum_ref
+        ref: "#/definitions/status"
+      witness_ref:
+        type: string_or_null
+      authority_ref:
+        type: string_or_null
+      surfaces:
+        type: array
+        description: "Addressable surfaces exposed by the node"
+        items:
+          type: surface_record
+
+  surface_record:
+    required:
+      - sna
+    fields:
+      sna:
+        type: object_ref
+        ref: "#/definitions/sna"
+
+  node_instance_binding:
+    rules:
+      - "Each node.surfaces[].sna.node_id MUST equal node.node_id"
+      - "Each node.surfaces[].sna.namespace MUST equal node.namespace"
+      - "Each node.surfaces[].sna.surface_id MUST be unique within the node"
+      - "node.surfaces[].sna is the canonical address object consumed by a resolver"
+      - "node.address MUST NOT be used as a substitute for a surface SNA"
+
+invariants:
+  - "node_id != surface_id"
+  - "surface_id != endpoint"
+  - "node.surfaces[].sna.node_id == node.node_id"
+  - "node.surfaces[].sna.namespace == node.namespace"
+  - "surface_id is unique per node"
+  - "capability != authority"
+  - "addressability != authority"
+  - "receipt != effect"
+  - "observation != authority"
+
+verification:
+  VERIFIED:
+    requirements:
+      - "Required fields are present"
+      - "Current witness exists for the asserted record"
+      - "The witness supports the exact node/surface binding"
+      - "Every surface is represented by a canonical SNA object"
+  mutation:
+    requirements:
+      - "SNA resolution alone MUST NOT authorize mutation"
+      - "Mutating actions require a separate authority relation"
+
+resolver_input:
+  canonical_path: "node.surfaces[].sna"
